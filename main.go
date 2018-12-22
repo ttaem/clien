@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/gocolly/colly"
+	"github.com/ttaem/clien/gui"
 )
 
 //Content ...
@@ -54,7 +56,13 @@ func main() {
 		fmt.Println("Visiting: ", r.URL.String())
 	})
 
-	c.Visit("https://www.clien.net/service/board/park")
-	//c.Visit("https://www.djfclien.net/service/board/parktt")
-	fmt.Println(contents)
+	//c.Visit("https://www.clien.net/service/board/park")
+	//fmt.Println(contents)
+
+	g, err := gui.NewGui()
+	if err != nil {
+		log.Panicln(err)
+		return
+	}
+	g.Run()
 }
