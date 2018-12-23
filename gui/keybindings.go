@@ -23,6 +23,26 @@ func (gui *Gui) GetKeyBindings() []*Binding {
 			Modifier: gocui.ModNone,
 			Handler:  gui.quit,
 		},
+		{
+			ViewName: "main_menu",
+			Key:      gocui.KeyArrowUp,
+			Modifier: gocui.ModNone,
+			Handler:  gui.handleMainMenuPrevLine,
+		},
+		{
+			ViewName: "main_menu",
+			Key:      gocui.KeyArrowDown,
+			Modifier: gocui.ModNone,
+			Handler:  gui.handleMainMenuNextLine,
+		},
+		/*
+			{
+				ViewName: "main_menu",
+				Key:      gocui.KeyEnter,
+				Modifier: gocui.ModNone,
+				Handler:  gui.handleMainMenuSelectLine,
+			},
+		*/
 	}
 
 	return bindings

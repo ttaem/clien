@@ -1,6 +1,7 @@
 package gui
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/jroimartin/gocui"
@@ -61,7 +62,14 @@ func (gui *Gui) layout(g *gocui.Gui) error {
 			return err
 		}
 		v.Title = "Main Menu"
+		v.Highlight = true
 		v.FgColor = gocui.ColorWhite
+		v.SelBgColor = gocui.ColorGreen
+		v.SelFgColor = gocui.ColorBlack
+		fmt.Fprintln(v, "[P]ark")
+		fmt.Fprintln(v, "[N]ews")
+		fmt.Fprintln(v, "[L]ecture")
+		fmt.Fprintln(v, "[U]se")
 	}
 
 	v, err = g.SetView("sub_menu", 0, subMenuStart, menuWidth, subMenuEnd)
@@ -96,6 +104,10 @@ func (gui *Gui) layout(g *gocui.Gui) error {
 			return err
 		}
 		v.FgColor = gocui.ColorGreen
+	}
+
+	if _, err := g.SetCurrentView("main_menu"); err != nil {
+		return err
 	}
 
 	return nil
